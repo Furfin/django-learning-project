@@ -1,0 +1,47 @@
+
+{% extends 'blog/base.html' %}
+{% block content %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <img class = 'rounded-circle article-img' src="{{object.author.profile.image.url}}">
+          <a class="mr-2" href="#">{{ object.author }}</a>
+          <small class="text-muted">{{ object.date_posted }}</small>
+        
+        </div>
+          {% if object.author == user %}
+          <a class="btn btn-secondary btn-sm" href="{% url 'post-update' object.id %}">Update post</a>
+          <a class="btn btn-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete post</a>
+          {%endif%}
+        <h2 class="article-title" >{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        {% if object.image %}
+        <h2>Related images</h2>
+        <img src="{{object.image.url}}">
+        {% endif %}
+      </div>
+
+      
+    </article>
+    <h2 clss = 'small'>Comments</h2>
+    <br/>
+    <hr>
+    {% if not object.comments.all %}
+    <p>There are no comments here</p>
+    <a href = "{% url 'post-comment' object.id %}">Create one !</a>
+    {%else%}
+     {% for comment in object.comments.all %}
+      <p border='0px'>
+          <strong>{{comment.author}}</strong>
+          <strong>{{comment.date_posted}}</strong>
+          {% if user.profile.comment_delete %}
+            <a class="btn btn-danger btn-sm" href="{% url 'com-delete' comment.id %}">Delete this comment</a>
+          {% endif %}
+          <p>{{comment.content}}</p>
+      </p>
+      <hr>
+     {%endfor%}
+     <a href = "{% url 'post-comment' object.id %}">Add new one</a>
+    {%endif%}
+  
+{% endblock content %}
