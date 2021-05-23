@@ -147,8 +147,8 @@ MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'furf1n228@gmail.com'
-EMAIL_HOST_PASSWORD = 'ogvi mrpw qrrm nnin' #past the key or password app here
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'password #past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'You dont know me but i know you and you gotta be sorry about that'
